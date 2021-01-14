@@ -1,0 +1,77 @@
+<form action="/admin/department/multiaction" method="post" id="del_form">
+
+<div class="form-group multi_action col-md-4">
+  <div class="row">
+    <div class="col-md-6">
+        <select name="action" id="" class="form-control">
+          <option value="delete">Delete Records</option>
+          <option value="active">Activate Records</option>
+          <option value="unactive">Unactivate Records</option>
+
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-success multi_action"><i class="fa fa-thumbs-up"></i> Perform Operation</button>
+    </div>
+  </div>
+  
+</div>
+
+
+<table class="table table-striped table-responsive">
+    <thead>
+       <tr>
+            <th><input type="checkbox"  id="checkbox"></th>
+           <th>Name</th>
+           <th>Imagery</th>
+           <th>Email</th>
+           <th>Phone</th>
+           <th>Role</th>
+           <th>Status</th>
+           <th>Actions</th>
+       </tr>
+    </thead>
+
+    <tbody>
+     {{#if users}}
+      
+        {{#each users}}
+                <tr>
+                     <td><input type="checkbox" name="checkboxes[]"  value="{{id}}" class="checkboxes"></td>
+</form>
+                    <td>{{name}}</td>
+                    {{#if file}}
+                        <td><img src="/uploads/{{file}}" class="img-circle" alt="" width="40"></td>
+                        {{else}}
+                        <td><img src="/uploads/default.png" alt="" width="40"></td>
+                    {{/if}}
+                    <td>{{email}}</td>
+                    <td>{{phone}}</td>
+                    <td>{{role}}</td>
+                    <td>{{status}}</td>
+                    <td><a href="/admin/users/edit/{{id}}" class="btn btn-success"><i class="fa fa-pencil"></i></a></td>
+                    <td><a href="/admin/users/show/{{id}}" class="btn btn-warning"><i class="fa fa-eye"></i></a></td>
+                    <td><a href="/admin/users/delete/{{id}}" class="btn btn-danger"><i class="fa fa-remove"></i></a></td>
+                </tr>
+        {{/each}}
+
+      {{else}}
+        <div class="alert alert-success">No User to display</div>
+
+     {{/if}}      
+    </tbody>
+</table>
+
+
+
+
+
+<style>
+  .multi_action{
+    display: none;
+  }
+</style>
+
+
+

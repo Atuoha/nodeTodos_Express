@@ -1,0 +1,159 @@
+  <div class="row">
+          <div class="col-md-6 portlets">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h2><strong>Data Chart</strong></h2>
+                <div class="panel-actions">
+                  <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                  <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+                </div>
+
+              </div>
+              <div class="panel-body">
+
+               {{!-- Chart here --}}
+                 <canvas id="myChart" ></canvas>  
+               
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-6 portlets">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">Add Todo <i class="fa fa-check-circle"></i></div>
+                <div class="widget-icons pull-right">
+                  <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                  <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="panel-body">
+                <div class="padd">
+
+                  <div class="form quick-post">
+                  
+                    <form method="POST" action="/admin/todos/create" enctype="multipart/form-data">
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Date</label>
+                                    <input type="date" placeholder="Date" required="" class="form-control" name="date">
+                                </div>
+                            </div>
+
+
+                             <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Subject</label>
+                                    <input type="text" placeholder="Subject" required="" autofocus="" class="form-control" name="subject">
+                                </div>
+                            </div>      
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                    <div class="form-group">
+                                          <label for="" class="control-label">Upload Image</label>
+                                          <input type="file" accept="image/*" name="file" id="inpFile" class="form-control" style="display: none;"><br>
+                                          <button type="button" id="upload-btn" class="btn btn-success">Upload <i class="fa fa-file fa-2x"></i></button>
+                                  </div>
+
+                                      <div class="image-preview pull-right" id="imagePreview">
+                                          <img width="100" class="img-rounded-circle image-preview__image" src="/uploads/img_place.png" alt=""> 
+                                          <span class="image-preview__default-text"> </span>
+                                      </div> 
+                              </div>
+                            </div>
+                
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="control-label">Note</label>
+                            <textarea name="message" id="" placeholder="Enter Note" class="form-control" required cols="30" rows="5"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Create Todo <i class="fa fa-send fa-2x"></i></button>
+                        </div>
+
+                    </form>
+
+                  </div>
+
+
+                </div>
+               
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        
+
+
+<!-- Activators -->
+<script src="/admin/js/jquery.js"></script>
+
+
+
+
+<!-- External Script for Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script> 
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Appointments", "Users", "Patients", "Laboratories", "Doctors", "Departments", "Services", "Contacts", "FAQs", "Testimony", "Media"],
+        datasets: [{
+            label: 'Data From nodeMedics',
+            data: [ {{appointCount}}, {{userCount}} , {{patientCount}} , {{researchCount}},  {{doctorCount}}, {{deptCount}}, {{serviceCount}}, {{contactCount}}, {{faqCount}}, {{testimonyCount}}, {{mediaCount}} ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(54, 162, 235, 1)',
+
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>

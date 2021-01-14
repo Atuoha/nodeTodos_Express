@@ -1,0 +1,65 @@
+ <div class="panel-body">
+    <div class="padd">
+
+        <div class="form quick-post">
+        
+            <form method="POST" action="/admin/todos/update/{{todo.slug}}?_method=PUT" enctype="multipart/form-data">
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Date</label>
+                        <input type="date"  placeholder="Date" required="" value="{{todo.date}}" class="form-control" name="date">
+                    </div>
+                </div>
+
+
+                    <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Subject</label>
+                        <input type="text" placeholder="Subject" required="" value="{{todo.subject}}" autofocus="" class="form-control" name="subject">
+                    </div>
+                </div>      
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="form-group">
+                                <label for="" class="control-label">Upload Image</label>
+                                <input type="file" accept="image/*" name="file" id="inpFile" class="form-control" style="display: none;"><br>
+                                <button type="button" id="upload-btn" class="btn btn-success">Upload <i class="fa fa-file fa-2x"></i></button>
+                        </div>
+
+                            <div class="image-preview pull-right" id="imagePreview">
+                                {{#if todo.file}}
+                                    <img width="100" class="img-rounded-circle image-preview__image" src="/uploads/{{todo.file}}" alt=""> 
+                                {{else}}
+                                    <img width="100" class="img-rounded-circle image-preview__image" src="/uploads/image-place.png" alt=""> 
+                                {{/if}}
+                                <span class="image-preview__default-text"> </span>
+                            </div> 
+                    </div>
+                </div>
+
+            </div>
+
+                <div class="form-group">
+                <label for="" class="control-label">Note</label>
+                <textarea name="note" id="" placeholder="Enter Note" class="form-control" required="" cols="30" rows="5">{{todo.note}}</textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Update Todo <i class="fa fa-send fa-2x"></i></button>
+            </div>
+
+        </form>
+
+        </div>
+
+
+    </div>
+    
+    </div>
+
+
+
+

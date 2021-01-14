@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="jumbotron text-white text-center">
+                <h1 ><strong>nodeTodos<i class=" fa fa-check-circle" style="color:rgb(104, 218, 104);"></i></strong></h1>
+                <p style="color:grey; font-size: 70%">nodeTodos is an implementation of a todo and accomplishment check list app using V8-Engine(Node) and some few modules</p><br>
+
+                {{#if loggedUser}}
+                    <a href="/admin" class="btn btn-lg btn-success">Logged in as {{ loggedUser.fullname }}</a>
+                    <a class="btn btn-danger btn-lg" href="/logout">Logout</a>
+                {{else}}
+                    <a href="/signin" class="btn btn-lg btn-success">Sign in to start now! <i class="fa fa-sign-in"></i></a>
+                {{/if}}
+                 
+            </div>
+</div>            
+        
+
+   

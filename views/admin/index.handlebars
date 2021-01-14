@@ -1,0 +1,233 @@
+{{#ifeq loggedUser.role 'Admin'}} 
+<div class="alert alert-success"><a href='#' class='close' data-dismiss='alert' aria-label='close' >&times;</a> Hey {{loggedUser.fullname}}, welcome on board Captain! We're nodeTodos and we're here to serve you</div>  
+   <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="info-box green-bg">
+              <i class="fa fa-users fa-3x"></i>
+            <div class="count">{{usersCount}}</div>
+              <div class="title">Registered Users</div>
+            </div>
+            <!--/.info-box-->
+             
+            </div>
+          <!--/.col-->
+
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="info-box brown-bg">
+              <i class="fa fa-list-ol fa-3x"></i>
+              <div class="count">{{todosCount}}</div>
+              <div class="title">Submitted Todos</div>
+            </div>
+            <!--/.info-box-->
+          </div>
+          <!--/.col-->
+
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="info-box dark-bg">
+              <i class="fa fa-thumbs-up fa-3x"></i>
+              <div class="count">{{completed_todosCount}}</div>
+              <div class="title">Completed Todos</div>
+            </div>
+            <!--/.info-box-->
+          </div>
+          <!--/.col-->
+
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="info-box red-bg">
+              <i class="fa fa-thumbs-down fa-3x"></i>
+              <div class="count">{{incompleted_todosCount}}</div>
+              <div class="title">Incompleted Todos</div>
+            </div>
+            <!--/.info-box-->
+          </div>
+          <!--/.col-->
+
+        </div>
+        <!--/.row-->
+
+        {{> admin/dashboard_addons}}
+{{/ifeq}}
+
+
+{{#ifeq loggedUser.role 'Subscriber'}} 
+<div class="alert alert-success"><a href='#' class='close' data-dismiss='alert' aria-label='close' >&times;</a> Hey {{loggedUser.fullname}}, welcome on board Captain! We're nodeTodos and we're here to serve you</div>    
+   <div class="row">     
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="info-box brown-bg">
+              <i class="fa fa-list-ol fa-3x"></i>
+              <div class="count">{{todosCount}}</div>
+              <div class="title">Submitted Todos</div>
+            </div>
+            <!--/.info-box-->
+          </div>
+          <!--/.col-->
+
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="info-box dark-bg">
+              <i class="fa fa-thumbs-up fa-3x"></i>
+              <div class="count">{{completed_todosCount}}</div>
+              <div class="title">Completed Todos</div>
+            </div>
+            <!--/.info-box-->
+          </div>
+          <!--/.col-->
+
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="info-box red-bg">
+              <i class="fa fa-thumbs-down fa-3x"></i>
+              <div class="count">{{incompleted_todosCount}}</div>
+              <div class="title">Incompleted Todos</div>
+            </div>
+            <!--/.info-box-->
+          </div>
+          <!--/.col-->
+
+
+           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="info-box green-bg">
+              <i class="fa fa-frown-o fa-3x"></i>
+            <div class="count">{{cancelled_todosCount}}</div>
+              <div class="title">Cancelled Todos</div>
+            </div>
+            <!--/.info-box-->
+             
+            </div>
+          <!--/.col-->
+
+        </div>
+        <!--/.row-->
+
+
+ <div class="row">
+        <div class="col-md-6" style="margin-top: 50px;">
+                <div class="container">
+                  <div class="center-algin text-center justify-content-center m-5 mx-auto">
+                  <div class="row">
+                      <div class="col-md-6">
+                          {{#if profile.file}}
+                              <img src="/uploads/{{profile.file}}" width="250" class="img-circle" alt="">
+                              {{else}}
+                              <img src="/uploads/default.png" alt="">
+                          {{/if}}
+
+                      </div>
+
+                      <div class="col-md-6 mt-2">
+                          <table class="table table-striped table-responsive">
+                              <tr>
+                                  <th>Full Name</th>
+                                  <td>{{profile.name}}</td>
+                              </tr>
+
+                              <tr>
+                                  <th>Email</th>
+                                  <td>{{profile.email}}</td>
+                              </tr>
+
+
+                              <tr>
+                                  <th>Phone</th>
+                                  <td>{{profile.phone}}</td>
+                              </tr>
+
+
+                              <tr>
+                                  <th>Role</th>
+                                  <td>{{profile.role}}</td>
+                              </tr>
+
+                              <tr>
+                                  <th>Status</th>
+                                  <td>{{profile.status}}</td>
+                              </tr>
+
+                              <tr>
+                                  <th>Edit Profile</th>
+                                  <td> <a href="/admin/users/edit/{{profile.id}}" class="btn btn-success">Edit Profile <i class="fa fa-pencil-square fa-2x"></i> </a></td>
+                              </tr>
+                          </table>
+                      </div>
+                  </div>
+                  </div>
+                    
+
+           </div>
+        </div>
+
+
+          <div class="col-md-6 portlets">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">Add Todo <i class="fa fa-check-circle"></i></div>
+                <div class="widget-icons pull-right">
+                  <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                  <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="panel-body">
+                <div class="padd">
+
+                  <div class="form quick-post">
+                  
+                      <form method="POST" action="/admin/todos/create" enctype="multipart/form-data">
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Date</label>
+                                    <input type="date"  placeholder="Date" required="" class="form-control" name="date">
+                                </div>
+                            </div>
+
+
+                             <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Subject</label>
+                                    <input type="text" placeholder="Subject" required="" autofocus="" class="form-control" name="subject">
+                                </div>
+                            </div>      
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                    <div class="form-group">
+                                          <label for="" class="control-label">Upload Image</label>
+                                          <input type="file" accept="image/*" name="file" id="inpFile" class="form-control" style="display: none;"><br>
+                                          <button type="button" id="upload-btn" class="btn btn-success">Upload <i class="fa fa-file fa-2x"></i></button>
+                                  </div>
+
+                                      <div class="image-preview pull-right" id="imagePreview">
+                                          <img width="100" class="img-rounded-circle image-preview__image" src="/uploads/img_place.png" alt=""> 
+                                          <span class="image-preview__default-text"> </span>
+                                      </div> 
+                              </div>
+                            </div>
+     
+                        </div>
+
+                         <div class="form-group">
+                            <label for="" class="control-label">Note</label>
+                            <textarea name="note" id="" placeholder="Enter Note" class="form-control" required="" cols="30" rows="5"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Create Todo <i class="fa fa-send fa-2x"></i></button>
+                        </div>
+
+                    </form>
+
+                  </div>
+
+
+                </div>
+             
+              </div>
+            </div>
+
+          </div>
+    </div>
+
+{{/ifeq}}
+
+<!-- Activators -->
+<script src="/admin/js/jquery.js"></script>
