@@ -1,12 +1,14 @@
-<div class="alert alert-success"><a href='#' class='close' data-dismiss='alert' aria-label='close' >&times;</a> All Todos</div>   
+<div class="alert alert-success"><a href='#' class='close' data-dismiss='alert' aria-label='close' >&times;</a> All Todos <i class="fa fa-calendar"></i></div>   
 
-<form action="/admin/contact/multiaction" method="post" id="del_form">
+<form action="/admin/todos/multiaction" method="post" class="multiOperationFORM">
 
 <div class="form-group multi_action col-md-4">
   <div class="row">
     <div class="col-md-6">
         <select name="action" id="" class="form-control">
           <option value="delete">Delete Records</option>
+          <option value="retrieve">Retrieve Records</option>
+          <option value="cancel">Cancel Records</option>
           <option value="complete">Completed Todos</option>
           <option value="incomplete">Incompleted Todos</option>
 
@@ -57,7 +59,12 @@
                     </td>
                     <td><a href="/admin/todos/edit/{{slug}}" class="btn btn-success"><i class="fa fa-pencil"></i></a></td>
                     <td><a href="/admin/todos/show/{{slug}}" class="btn btn-info"><i class="fa fa-eye"></i></a></td>
-                    <td><a href="/admin/todos/delete/{{slug}}" class="btn btn-danger"><i class="fa fa-remove"></i></a></td>
+                    <td>
+                      <form action="/admin/todos/delete/{{slug}}?_method=DELETE" method="post">
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i></button>
+                      </form>
+                    </td>
+                    {{!-- <td><a href="/admin/todos/delete/{{slug}}" class="btn btn-danger"><i class="fa fa-remove"></i></a></td> --}}
                 </tr>
         {{/each}}
 

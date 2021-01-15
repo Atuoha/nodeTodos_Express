@@ -21,7 +21,7 @@ $(document).ready(function(){
   
   
   
-    $('#del_form').submit(function(e){
+    $('.multiOperationFORM').submit(function(e){
       e.preventDefault()
       let data = $(this).serialize()
       let action = $(this).attr('action')
@@ -41,12 +41,17 @@ $(document).ready(function(){
               $('#checkbox').checked = false
             
               swal({  //sweetalert.js library
-                title:  `Delete Success`,
+                title:  `Operation Success`,
                 text: `Kudos! You've successfully performed operation on marked todos. `,
                 icon: "success",    
                 timer: 5500,
                 closeOnClickOutside: false  
               });
+
+
+              setInterval( ()=>{
+                $('.table').load(location.href + ' .table' );
+              }, 3000)
   
             }
         }

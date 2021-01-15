@@ -25,7 +25,7 @@ router.get('/', (req, res)=>{
 
 
 router.get('/cancelled', (req, res)=>{
-    Todo.find({'status': 'cancelled'})
+    Todo.find({status: false})
     .then(todos=>{
         res.render('admin/todos/cancelled', {todos: todos});
     })
@@ -34,7 +34,7 @@ router.get('/cancelled', (req, res)=>{
 
 
 router.get('/completed', (req, res)=>{
-    Todo.find({'status': 'completed'})
+    Todo.find({completion_status: true})
     .then(todos=>{
         res.render('admin/todos/completed', {todos: todos});
     })
@@ -43,7 +43,7 @@ router.get('/completed', (req, res)=>{
 
 
 router.get('/incompleted', (req, res)=>{
-    Todo.find({'status': 'incompleted'})
+    Todo.find({completion_status: false})
     .then(todos=>{
         res.render('admin/todos/incompleted', {todos: todos});
     })
@@ -190,5 +190,115 @@ router.put('/completion_status/:slug', (req, res)=>{
     .catch(err=>console.log(err))
 })
 
+
+
+
+router.post('/dummy', (req, res)=>{
+    for(let i = 0; i < req.body.number; i++){
+
+        const newTodo = new Todo({
+            subject: faker.name.title(),
+            date: new Date,
+            completion_status: faker.random.boolean(),
+            status: faker.random.boolean(),
+            file: 'img_place.png',
+            user: req.user,
+            note: faker.lorem.sentence()
+        })
+
+        newTodo.save()
+        .then(response=>{
+            req.flash('success_msg', `${req.body.number} dummy todos saved :)`);
+            res.redirect('/admin/todos');
+        })
+        .catch(err=>console.log(err))
+    }
+})
+
+
+
+
+router.delete('/delete/:slug', (req, res)=>{
+    Todo.findOne({slug: req.params.slug})
+    .then(todo=>{
+        if(todo.file !== 'img_place.png'){
+            let delDir = './public/uploads/';
+            fs.unlink(delDir + todo.file, err=>{
+                if(err)console.log(err);
+            })
+        }
+
+        todo.delete()
+        .then(response=>{
+            req.flash('success_msg', 'Todo deleted successfully :)');
+            res.redirect('/admin/todos')
+        })
+        .catch(err=>console.log(err))
+    })
+    .catch(err=>console.log(err))
+})
+
+
+
+router.post('/multiaction', (req, res)=>{
+
+    if(!req.body.checkboxes){
+        req.flash('error_msg', 'No input checkboxes ):');
+        res.redirect('back');
+    }
+
+    Todo.find({_id: req.body.checkboxes})
+    .then(todos=>{
+        todos.forEach(todo=>{
+            if(req.body.action == 'incomplete'){
+                todo.completion_status = false;
+                todo.save()
+                .then(response=>{
+                    req.flash('success_msg', 'Todos completion status changed to incompleted');
+                    res.redirect('/admin/todos/incompleted');
+                })
+            }else if(req.body.action == 'complete'){
+                todo.completion_status = true;
+                todo.save()
+                .then(response=>{
+                    req.flash('success_msg', 'Todos completion status changed to completed');
+                    res.redirect('/admin/todos/completed');
+                })
+            }else if(req.body.action == 'retrieve'){
+                todo.status = true
+                todo.save()
+                .then(response=>{
+                    req.flash('success_msg', 'Todos status changed to active');
+                    res.redirect('/admin/todos');
+                })
+            }else if(req.body.action == 'cancel'){
+                todo.status = false
+                todo.save()
+                .then(response=>{
+                    req.flash('success_msg', 'Todos status changed to inactive');
+                    res.redirect('/admin/todos');
+                })
+            }else if(req.body.action == 'delete'){
+                if(todo.file !== 'img_place.png'){
+                    let delDir = './public/uploads/';
+                    fs.unlink(delDir + todo.file, err=>{
+                        if(err)console.log(err);
+                    })
+                }
+        
+                todo.delete()
+                .then(response=>{
+                    req.flash('success_msg', 'Todo deleted successfully :)');
+                    res.redirect('/admin/todos')
+                })
+                .catch(err=>console.log(err))
+            }else{
+                req.flash('success_msg', 'No operation to be handled :)');
+                res.redirect('/admin/todos')
+            }
+        })
+    })
+    .catch(err=>console.log(err))
+})
 
 module.exports = router;

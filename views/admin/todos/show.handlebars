@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-5">
         {{#if todo.file}}
-            <img src="/uploads/{{todo.file}}" width="250" class="img-circle" alt="">
+            <img src="/uploads/{{todo.file}}" width="350" class="img-thumbnail" alt="">
             {{else}}
             <img src="/uploads/image-place.png" alt="">
         {{/if}}
@@ -24,13 +24,28 @@
 
             <tr>
                 <th>Status</th>
-                <td>{{todo.status}}</td>
+                <td>{{#if todo.status}} Active {{else}} Inactive {{/if}} </td>
+            </tr>
+
+            <tr>
+                <th>Completed</th>
+                <td>{{todo.completion_status}}</td>
             </tr>
 
             <tr>
                 <th>Edit todo</th>
-                <td> <a href="/admin/todo/edit/{{todo.id}}" class="btn btn-success"><i class="fa fa-pencil"></i> Edit todo</a></td>
+                <td> <a href="/admin/todo/edit/{{todo.slug}}" class="btn btn-success"><i class="fa fa-pencil-square fa-2x"></i></a></td>
             </tr>
+
+            <tr>
+                <th>Delete todo</th>
+                 <td>
+                      <form action="/admin/todos/delete/{{slug}}?_method=DELETE" method="post">
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-remove fa-2x"></i></button>
+                      </form>
+                 </td>
+            </tr>
+
         </table>
     </div>
 </div>
