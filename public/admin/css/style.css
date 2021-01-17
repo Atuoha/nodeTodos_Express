@@ -11,6 +11,25 @@
 @import url(line-icons.css);
 
 
+/* custom */
+#smallScreenSearch_Form{
+    display: none;
+}
+
+@media (max-width: 792px){
+    #smallScreenSearch_Form{
+        display: block;
+    }
+
+    #bigScreenSearch_Form{
+        display: none;
+    }
+
+
+}
+
+
+/*  */
 
 body {
 
@@ -179,6 +198,8 @@ table tr th { color: #688a7e;}
   background-size: cover;
 
 }
+
+
 
 
 

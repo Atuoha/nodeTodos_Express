@@ -19,12 +19,23 @@ router.get('/', (req, res)=>{
 
 
 router.get('/signin', (req, res)=>{
+    if(req.user){
+        res.redirect('/admin');
+    }
     res.render('home/login');
 })
 
 
 router.get('/signup', (req, res)=>{
+    if(req.user){
+        res.redirect('/admin');
+    }
     res.render('home/register');
+})
+
+
+router.get('/about', (req, res)=>{
+    res.render('home/about');
 })
 
 

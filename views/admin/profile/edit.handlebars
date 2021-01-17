@@ -1,0 +1,70 @@
+<h3>Edit profile</h3>
+
+{{#each errors}}
+
+    <div class="alert alert-danger">{{message}}</div>
+
+{{/each}}
+
+<div class="card">
+    <div class="card-header">Edit Profile by filling this form....</div>
+      <div class="card-body">
+            <form method="post" id="Edit-profile" enctype="multipart/form-data" action="/admin/profile/update?_method=PUT">
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <label for="title">Fullname</label>
+                            <input value="{{profile.fullname}}" name="fullname" class="form-control" id="title" required autofocus validate  type="text" aria-describedby="nameHelp" placeholder="Enter Fullname ">
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label for="sub">Email</label>
+                            <input value="{{profile.email}}" name="email" class="form-control" id="sub" required validate type="email" aria-describedby="nameHelp" placeholder="Enter Email">
+                        </div>   
+
+
+                          <div class="col-md-4">
+                            <label for="sub">Role</label>
+                            <input value="{{profile.role}}" readonly name="role" class="form-control" >
+                        </div>                   
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <label for="category">Password</label>
+                              <input name="password" class="form-control" id="sub"  validate type="password" aria-describedby="nameHelp" placeholder="Enter Password">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="category">Phone</label>
+                              <input name="phone" class="form-control" id="sub" value="{{profile.phone}}" required  validate type="text" aria-describedby="nameHelp" placeholder="Enter Phone">
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label for="exampleInputLastName">Imagery</label>
+                             <input type="file" accept="image/*" name="file" id="inpFile" class="form-control" style="display: none;"><br>
+                             <button type="button" id="upload-btn" class="btn btn-success">Upload <i class="fa fa-file"></i></button>
+
+                             <div class="image-preview pull-right" id="imagePreview">
+                                {{#if profile.file}}<img width="100" class="img-circle image-preview__image" src="/uploads/{{profile.file}}" alt=""> {{else}} <img width="100" class="img-circle  image-preview__image" src="/uploads/default.png" alt="">  {{/if}}
+                                <span class="image-preview__default-text"> </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Update Profile <i class="fa fa-send"></i></button>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+

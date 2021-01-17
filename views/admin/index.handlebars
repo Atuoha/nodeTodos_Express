@@ -4,7 +4,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box green-bg">
               <i class="fa fa-users fa-3x"></i>
-            <div class="count">{{usersCount}}</div>
+            <div class="count">{{userCount}}</div>
               <div class="title">Registered Users</div>
             </div>
             <!--/.info-box-->
@@ -15,7 +15,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box brown-bg">
               <i class="fa fa-list-ol fa-3x"></i>
-              <div class="count">{{todosCount}}</div>
+              <div class="count">{{all_todosCount}}</div>
               <div class="title">Submitted Todos</div>
             </div>
             <!--/.info-box-->
@@ -25,7 +25,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box dark-bg">
               <i class="fa fa-thumbs-up fa-3x"></i>
-              <div class="count">{{completed_todosCount}}</div>
+              <div class="count">{{all_completedCount}}</div>
               <div class="title">Completed Todos</div>
             </div>
             <!--/.info-box-->
@@ -35,7 +35,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box red-bg">
               <i class="fa fa-thumbs-down fa-3x"></i>
-              <div class="count">{{incompleted_todosCount}}</div>
+              <div class="count">{{all_incompletedCount}}</div>
               <div class="title">Incompleted Todos</div>
             </div>
             <!--/.info-box-->
@@ -65,7 +65,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box dark-bg">
               <i class="fa fa-thumbs-up fa-3x"></i>
-              <div class="count">{{completed_todosCount}}</div>
+              <div class="count">{{completedCount}}</div>
               <div class="title">Completed Todos</div>
             </div>
             <!--/.info-box-->
@@ -75,7 +75,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box red-bg">
               <i class="fa fa-thumbs-down fa-3x"></i>
-              <div class="count">{{incompleted_todosCount}}</div>
+              <div class="count">{{incompletedCount}}</div>
               <div class="title">Incompleted Todos</div>
             </div>
             <!--/.info-box-->
@@ -86,7 +86,7 @@
            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="info-box green-bg">
               <i class="fa fa-frown-o fa-3x"></i>
-            <div class="count">{{cancelled_todosCount}}</div>
+            <div class="count">{{cancelledCount}}</div>
               <div class="title">Cancelled Todos</div>
             </div>
             <!--/.info-box-->
@@ -99,7 +99,18 @@
 
 
  <div class="row">
-        <div class="col-md-6" style="margin-top: 50px;">
+    <div class="col-md-6 portlets" style="margin-top: 50px;">
+       <div class="panel panel-default">
+              <div class="panel-heading">
+                <h2><strong>My Profile</strong></h2>
+                <div class="panel-actions">
+                  <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                  <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+                </div>
+
+              </div>
+              <div class="panel-body">
+
                 <div class="container">
                   <div class="center-algin text-center justify-content-center m-5 mx-auto">
                   <div class="row">
@@ -116,7 +127,7 @@
                           <table class="table table-striped table-responsive">
                               <tr>
                                   <th>Full Name</th>
-                                  <td>{{profile.name}}</td>
+                                  <td>{{profile.fullname}}</td>
                               </tr>
 
                               <tr>
@@ -143,16 +154,19 @@
 
                               <tr>
                                   <th>Edit Profile</th>
-                                  <td> <a href="/admin/users/edit/{{profile.id}}" class="btn btn-success">Edit Profile <i class="fa fa-pencil-square fa-2x"></i> </a></td>
+                                  <td> <a href="/admin/profile/edit" class="btn btn-success">Edit Profile <i class="fa fa-pencil-square fa-2x"></i> </a></td>
                               </tr>
                           </table>
                       </div>
                   </div>
                   </div>
                     
-
-           </div>
         </div>
+                   
+              </div>
+            </div>
+    </div>
+    
 
 
           <div class="col-md-6 portlets">
@@ -184,7 +198,7 @@
                              <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Subject</label>
-                                    <input type="text" placeholder="Subject" required="" autofocus="" class="form-control" name="subject">
+                                    <input type="text" placeholder="Subject" required=""  class="form-control" name="subject">
                                 </div>
                             </div>      
 

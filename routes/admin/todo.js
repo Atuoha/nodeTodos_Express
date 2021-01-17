@@ -15,39 +15,91 @@ router.all('/*', (req, res, next)=>{
 
 
 router.get('/', (req, res)=>{
-    Todo.find()
-    .then(todos=>{
-        res.render('admin/todos', {todos: todos});
-    })
-    .catch(err=>console.log(err))
+    
+    if(req.user.role == 'Admin'){
+        Todo.find()
+        .then(todos=>{
+            res.render('admin/todos', {todos: todos});
+        })
+        .catch(err=>console.log(err))
+
+    }else{
+        Todo.find({user: req.user})
+        .then(todos=>{
+            res.render('admin/todos', {todos: todos});
+        })
+        .catch(err=>console.log(err))
+    }
+
 })
 
 
 
 router.get('/cancelled', (req, res)=>{
-    Todo.find({status: false})
-    .then(todos=>{
-        res.render('admin/todos/cancelled', {todos: todos});
-    })
-    .catch(err=>console.log(err))
+
+    if(req.user.role == 'Admin'){
+        Todo.find()
+        .where('status').equals(false)
+        .then(todos=>{
+            res.render('admin/todos/cancelled', {todos: todos});
+        })
+        .catch(err=>console.log(err))
+
+    }else{
+        Todo.find({user: req.user})
+        .where('status').equals(false)
+        .then(todos=>{
+            res.render('admin/todos/cancelled', {todos: todos});
+        })
+        .catch(err=>console.log(err))
+    }
+
+   
 })
 
 
 router.get('/completed', (req, res)=>{
-    Todo.find({completion_status: true})
-    .then(todos=>{
-        res.render('admin/todos/completed', {todos: todos});
-    })
-    .catch(err=>console.log(err))
+
+    if(req.user.role == 'Admin'){
+        Todo.find()
+        .where('completion_status').equals(true)
+        .then(todos=>{
+            res.render('admin/todos/completed', {todos: todos});
+        })
+        .catch(err=>console.log(err))
+
+    }else{
+        Todo.find({user: req.user})
+        .where('completion_status').equals(true)
+        .then(todos=>{
+            res.render('admin/todos/completed', {todos: todos});
+        })
+        .catch(err=>console.log(err))
+    }
+
 })
 
 
 router.get('/incompleted', (req, res)=>{
-    Todo.find({completion_status: false})
-    .then(todos=>{
-        res.render('admin/todos/incompleted', {todos: todos});
-    })
-    .catch(err=>console.log(err))
+
+
+    if(req.user.role == 'Admin'){
+        Todo.find()
+        .where('completion_status').equals(false)
+        .then(todos=>{
+            res.render('admin/todos/incompleted', {todos: todos});
+        })
+        .catch(err=>console.log(err))
+
+    }else{
+        Todo.find({user: req.user})
+        .where('completion_status').equals(false)
+        .then(todos=>{
+            res.render('admin/todos/incompleted', {todos: todos});
+        })
+        .catch(err=>console.log(err))
+    }
+ 
 })
 
 router.get('/create', (req, res)=>{
@@ -138,7 +190,7 @@ router.put('/update/:slug', (req, res)=>{
                 if(err)console.log(err);
             })
 
-            if(todo.file !== 'image_place.png'){
+            if(todo.file !== 'img_place.png'){
                 fs.unlink(uploadDir + todo.file, err=>{
                     if(err)console.log(err);
                 })
@@ -300,5 +352,22 @@ router.post('/multiaction', (req, res)=>{
     })
     .catch(err=>console.log(err))
 })
+
+
+
+router.post('/search', (req, res)=>{
+    let name =  req.body.searched
+    let regex = new RegExp(name, 'i')
+  
+    Todo.find({'$or': [{'subject': regex}]})
+    .then(todos=>{
+        let keys =  Object.keys(todos);
+        let todosCount = keys.length;
+        res.render('admin/todos/searched', {todos: todos, todosCount: todosCount});
+    })
+    .catch(err=>console.log(err))
+})
+
+
 
 module.exports = router;

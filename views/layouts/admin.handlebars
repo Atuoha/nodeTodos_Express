@@ -11,12 +11,21 @@
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="/admin">Dashboard</a></li>
               <li><i class="fa fa-check-circle"></i>Todos</li>
+              
             </ol>
           </div>
         </div>
+
+        {{!-- SEARCH FUNCTIONALITY --}}
+        <form class="navbar-form" style="margin-bottom: 5px;" id="smallScreenSearch_Form">
+          <input class="form-control search_todo" name="searched" placeholder="Search TodoLists" type="text">
+        </form>
+
+
         {{> admin/msgs}}
 
        {{{body}}}
+      
 
        </section>
 

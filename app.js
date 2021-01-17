@@ -94,6 +94,16 @@ const todos = require('./routes/admin/todo');
 app.use('/admin/todos', todos);
 
 
+// profile
+const profile = require('./routes/admin/profile');
+app.use('/admin/profile', profile);
+
+
+// users
+const adminusers = require('./routes/admin/users');
+app.use('/admin/users', adminusers);
+
+
 
 app.listen(PORT, ()=>{
     console.log(`Listening to port ${PORT}`);

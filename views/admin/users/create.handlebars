@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-4">
             <label for="" class="control-label">Fullname</label>
-            <input type="text" class="form-control" name="name" required autofocus> 
+            <input type="text" class="form-control" name="fullname" required autofocus> 
         </div>
 
          <div class="col-md-4">
@@ -40,22 +40,21 @@
 
          <div class="col-md-4">
             <label for="" class="control-label">Imagery</label>
-            <input type="file" name="file" id="inpFile" required class="form-control">
+             <input type="file" accept="image/*" name="file" id="inpFile" class="form-control" style="display: none;"><br>
+            <button type="button" id="upload-btn" class="btn btn-success">Upload <i class="fa fa-file fa-2x"></i></button>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6">
             <label for="" class="control-label">Password</label>
-            <input type="password" name="password" class="form-control" required id="">
-            <input type="file" accept="image/*" name="file" id="inpFile" class="form-control" style="display: none;"><br>
-            <button type="button" id="upload-btn" class="btn btn-success">Upload <i class="fa fa-file fa-2x"></i></button>
+            <input type="password" name="password" placeholder="********" class="form-control" required id="">
         </div>
         
 
         <div class="col-md-6">
               <div class="image-preview pull-right" id="imagePreview">
-                <img width="100" class="img-thumbnail image-preview__image" src="/uploads/default.png" alt=""> 
+                <img width="100" class="img-circle image-preview__image" src="/uploads/default.png" alt=""> 
                 <span class="image-preview__default-text"> </span>
               </div>
         </div>
@@ -63,7 +62,7 @@
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-success">Create User</button>
+        <button type="submit" class="btn btn-success">Create User <i class="fa fa-user fa-2x"></i></button>
     </div>
 </form>
 

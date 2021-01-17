@@ -32,8 +32,14 @@
           </li>
 
            <li>
-            <a class="" href="/"><i class="fa fa-info-circle"></i><span>About</span></a>
+            <a class="" href="/about"><i class="fa fa-info-circle"></i><span>About</span></a>
           </li>
+
+          {{#if loggedUser}}
+            <li>
+              <a class="" href="/logout"><i class="fa fa-sign-out"></i><span>Logout</span></a>
+            </li>
+          {{/if}}
     
         </ul>
         <!-- sidebar menu end-->

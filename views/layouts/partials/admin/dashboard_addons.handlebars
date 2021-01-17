@@ -48,7 +48,7 @@
                              <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Subject</label>
-                                    <input type="text" placeholder="Subject" required="" autofocus="" class="form-control" name="subject">
+                                    <input type="text" placeholder="Subject" required=""  class="form-control" name="subject">
                                 </div>
                             </div>      
 
@@ -71,7 +71,7 @@
 
                         <div class="form-group">
                             <label for="" class="control-label">Note</label>
-                            <textarea name="message" id="" placeholder="Enter Note" class="form-control" required cols="30" rows="5"></textarea>
+                            <textarea name="note" id="" placeholder="Enter Note" class="form-control" required cols="30" rows="5"></textarea>
                         </div>
 
                         <div class="form-group">
@@ -110,10 +110,10 @@ var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Appointments", "Users", "Patients", "Laboratories", "Doctors", "Departments", "Services", "Contacts", "FAQs", "Testimony", "Media"],
+        labels: ["Users", "All Todos", "Completed Todos", "Incompleted Todos"],
         datasets: [{
-            label: 'Data From nodeMedics',
-            data: [ {{appointCount}}, {{userCount}} , {{patientCount}} , {{researchCount}},  {{doctorCount}}, {{deptCount}}, {{serviceCount}}, {{contactCount}}, {{faqCount}}, {{testimonyCount}}, {{mediaCount}} ],
+            label: 'Data From nodeTodos',
+            data: [ {{userCount}}, {{all_todosCount}} , {{all_completedCount}} , {{all_incompletedCount}} ],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

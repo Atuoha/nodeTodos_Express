@@ -1,12 +1,12 @@
-<form action="/admin/department/multiaction" method="post" id="del_form">
+<form action="/admin/users/multiaction" method="post" id="user_multi_form">
 
 <div class="form-group multi_action col-md-4">
   <div class="row">
     <div class="col-md-6">
         <select name="action" id="" class="form-control">
-          <option value="delete">Delete Records</option>
-          <option value="active">Activate Records</option>
-          <option value="unactive">Unactivate Records</option>
+          <option value="delete">Delete Users</option>
+          <option value="active">Activate Users</option>
+          <option value="inactive">Unactivate Users</option>
 
       </select>
     </div>
@@ -40,7 +40,7 @@
                 <tr>
                      <td><input type="checkbox" name="checkboxes[]"  value="{{id}}" class="checkboxes"></td>
 </form>
-                    <td>{{name}}</td>
+                    <td>{{fullname}}</td>
                     {{#if file}}
                         <td><img src="/uploads/{{file}}" class="img-circle" alt="" width="40"></td>
                         {{else}}
@@ -52,7 +52,11 @@
                     <td>{{status}}</td>
                     <td><a href="/admin/users/edit/{{id}}" class="btn btn-success"><i class="fa fa-pencil"></i></a></td>
                     <td><a href="/admin/users/show/{{id}}" class="btn btn-warning"><i class="fa fa-eye"></i></a></td>
-                    <td><a href="/admin/users/delete/{{id}}" class="btn btn-danger"><i class="fa fa-remove"></i></a></td>
+                    <td>
+                      <form action="/admin/users/delete/{{id}}?_method=DELETE" method="post">
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i></button>
+                      </form>
+                    </td>
                 </tr>
         {{/each}}
 

@@ -16,6 +16,11 @@ const userSchema = new Schema({
     },
 
     status:{
+        type: String,
+        default: 'active'
+    },
+
+    file:{
         type: String
     },
 
